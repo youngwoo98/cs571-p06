@@ -9,14 +9,18 @@ import BadgerChatroom from '../content/BadgerChatroom';
 import BadgerChatHome from '../content/BadgerChatHome';
 import BadgerNoMatch from '../content/BadgerNoMatch';
 
+import DataContext from '../../contexts/DataContext';
+
 function BadgerApp() {
 
   const [chatrooms, setChatrooms] = useState([]);
 
+  const[data, setData] = useState({stat: false})
+  
   useEffect(() => {
     fetch('https://cs571.org/s23/hw6/api/chatroom', {
       headers: {
-        "X-CS571-ID": "bid_00000000000000000000",
+        "X-CS571-ID": "bid_c49825b5bd469d794555",
       }
     }).then(res => res.json()).then(json => {
       setChatrooms(json)
@@ -25,6 +29,7 @@ function BadgerApp() {
 
   return (
     <BrowserRouter>
+    <DataContext.Provider value = {[data, setData]}>
       <Routes>
         <Route path="/" element={<BadgerLayout chatrooms={chatrooms} />}>
           <Route index element={<BadgerChatHome />} />
@@ -39,6 +44,7 @@ function BadgerApp() {
           <Route path="*" element={<BadgerNoMatch />} />
         </Route>
       </Routes>
+    </DataContext.Provider>
     </BrowserRouter>
   );
 }

@@ -1,8 +1,14 @@
-import React from "react"
+import React, { useState } from "react"
+import { Button } from "react-bootstrap";
 
 function BadgerMessage(props) {
 
     const dt = new Date(props.created);
+
+
+    
+
+
 
     return <>
         <h2>{props.title}</h2>
@@ -10,6 +16,7 @@ function BadgerMessage(props) {
         <br/><br/>
         <i>{props.poster}</i>
         <p>{props.content}</p>
+        
     </>
 }
 
