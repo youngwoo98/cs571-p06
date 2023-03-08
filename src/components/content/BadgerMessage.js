@@ -1,11 +1,7 @@
-import React, { useContext, useState } from "react"
 import { Button } from "react-bootstrap";
 
-import DataContext from "../../contexts/DataContext";
 
 function BadgerMessage(props) {
-
-    const [data, setData] = useContext(DataContext);
 
     const usr = sessionStorage.getItem("username");
 
