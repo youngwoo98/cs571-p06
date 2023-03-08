@@ -27,8 +27,9 @@ export default function BadgerLogin() {
             if(res.status === 200){
                 alert("Login was successful!");
                 sessionStorage.setItem('logged_in', "yes");
+                sessionStorage.setItem('username', inputUSR.current.value);
                 setData({
-                    stat: true
+                    username: inputUSR.current.value
                 })
 
                 navigate('/');
@@ -41,7 +42,6 @@ export default function BadgerLogin() {
             }            
         })
     }
-
 
     
     const inputUSR = useRef();

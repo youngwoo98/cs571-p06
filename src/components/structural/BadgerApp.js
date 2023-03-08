@@ -15,7 +15,7 @@ function BadgerApp() {
 
   const [chatrooms, setChatrooms] = useState([]);
 
-  const[data, setData] = useState({stat: false})
+  const[data, setData] = useState({username: ""});
   
   useEffect(() => {
     fetch('https://cs571.org/s23/hw6/api/chatroom', {

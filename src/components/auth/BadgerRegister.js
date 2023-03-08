@@ -27,8 +27,9 @@ export default function BadgerRegister() {
             if(res.status === 200){
                 alert("Successfully created user!");
                 sessionStorage.setItem('logged_in', 'yes');
+                sessionStorage.setItem('username', usr);
                 setData({
-                    stat: true
+                    username: usr
                 })
                 navigate('/')
             }

@@ -5,9 +5,7 @@ import BadgerMessage from "./BadgerMessage";
 export default function BadgerChatroom(props) {
 
     const [messages, setMessages] = useState([]);
-    
-    const [usr, setUSR] = useState([]);
-  
+      
 
     const loadMessages = () => {
         fetch(`https://cs571.org/s23/hw6/api/chatroom/${props.name}/messages`, {
@@ -47,26 +45,24 @@ export default function BadgerChatroom(props) {
         })
     }
 
-    // const findUSR = (id) => {
-    //     fetch('https://cs571.org/s23/hw6/api/whoami', {
-    //         credentials: 'include',
-    //         headers: {
-    //             "X-CS571-ID": "bid_c49825b5bd469d794555",
-    //         }
-    //     })
-    //     .then(res => {
-    //         if(res.status === 200){
-    //             return res.json()
-    //         }
-    //         else{
-    //             setUSR("")
-    //         }
-    //     })
-    //     .then(body => {
-    //         setUSR(body['user'].username)
-    //         return(usr[0] === id)
-    //     })
-    // }
+
+    const deletePost = (id) => {
+        fetch(`https://www.cs571.org/s23/hw6/api/chatroom/${props.name}/messages/${id}`, {
+            method: 'DELETE',
+            credentials: 'include',
+            headers: {
+                "X-CS571-ID": "bid_c49825b5bd469d794555",
+            },
+        })
+        .then(res => {
+            if(res.status === 200){
+                alert("Successfully deleted message!");
+                loadMessages();
+            }
+        })
+    }
+
+    
     
     const[ttl, setTitle] = useState("");
     const[cont, setContent] = useState("");
@@ -108,7 +104,7 @@ export default function BadgerChatroom(props) {
                 <>
                     {
                         messages.map(prop => 
-                        <BadgerMessage {...prop} key={`${prop.poster}+${prop.id}`}>
+                        <BadgerMessage {...prop} key={`${prop.poster}+${prop.id}`} deletePost={deletePost}>
             
                         </BadgerMessage>)
                     }
